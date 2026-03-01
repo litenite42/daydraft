@@ -1,7 +1,5 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -40,3 +38,43 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+  #main-form {
+    width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #main-form > * {
+    max-width: 90%;
+  }
+
+  @media screen and (max-width: 600px) {
+    #main-form {
+      width: 90vw;
+    }
+
+    #main-form > * {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    #root {
+      padding-left: 10vw;
+      padding-right: 10vw;
+    }
+
+    main {
+      border-left: 1px solid grey;
+      border-right: 1px solid grey;
+    }
+
+    #main-form {
+      width: 50vw
+    }
+  }
