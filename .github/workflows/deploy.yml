@@ -1,10 +1,11 @@
 name: Deploy DayDraft to Pages
 
 on:
-  push:
+  push: 
     branches: ["main"]
+  workflow_dispatch: {} # allow manually triggering workflow
 
-permissions:
+permissions: 
   contents: read
   pages: write
   id-token: write
