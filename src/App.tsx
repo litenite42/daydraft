@@ -22,7 +22,7 @@ export default function App() {
   };
 
   return (
-    <main style={{ maxWidth: '1024px', margin: '0 auto', padding: '20px', fontFamily: 'sans-serif' }}>
+    <main style={{ margin: '0 auto', padding: '20px', fontFamily: 'sans-serif' }}>
       <h1>Day Draft</h1>
       
       {/* Creation UI */}
@@ -33,9 +33,10 @@ export default function App() {
       </div>
 
       {/* List UI */}
-      <section style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', alignItems: 'center', gap: '.75rem' }}>
+      {/* <section id="note-list" style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', alignItems: 'center', gap: '.75rem' }}> */}
+      <section id="note-list" style={{  }}>
         {notes?.map(note => (
-          <div key={note.id} style={{ height: '100%', border: '1px solid #ccc', marginBottom: '15px', padding: '15px', borderRadius: '8px' }}>
+          <div key={note.id} style={{ border: '1px solid #ccc', marginBottom: '15px', padding: '15px', borderRadius: '8px' }}>
             {editingId === note.id ? (
               <NoteEdit note={note} onDone={() => setEditingId(null)} />
             ) : (
