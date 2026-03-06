@@ -1,8 +1,9 @@
-import { useState } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from './db.ts';
-import { NoteView } from './components/NoteView.tsx';
-import { NoteEdit } from './components/NoteEdit.tsx';
+
+import { useState } from 'react';
+
+import { NoteList } from './components/NoteList.tsx'
 
 import './index.css';
 import './App.css';
@@ -10,21 +11,20 @@ import './App.css';
 export default function App() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [editingId, setEditingId] = useState<number | null>(null);
-  
+
   const notes = useLiveQuery(() => db.notes.toArray());
 
   const addNote = async () => {
     if (!title) return;
     await db.notes.add({ title, content, createdAt: Date.now() });
-    setTitle(""); 
+    setTitle("");
     setContent("");
   };
 
   return (
     <main style={{ margin: '0 auto', padding: '20px', fontFamily: 'sans-serif' }}>
       <h1>Day Draft</h1>
-      
+
       {/* Creation UI */}
       <div id="main-form" style={{ marginBottom: '30px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title..." />
@@ -33,18 +33,7 @@ export default function App() {
       </div>
 
       {/* List UI */}
-      {/* <section id="note-list" style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', alignItems: 'center', gap: '.75rem' }}> */}
-      <section id="note-list" style={{  }}>
-        {notes?.map(note => (
-          <div key={note.id} style={{ border: '1px solid #ccc', marginBottom: '15px', padding: '15px', borderRadius: '8px' }}>
-            {editingId === note.id ? (
-              <NoteEdit note={note} onDone={() => setEditingId(null)} />
-            ) : (
-              <NoteView note={note} onEdit={() => setEditingId(note.id!)} />
-            )}
-          </div>
-        ))}
-      </section>
+      <NoteList notes={notes ?? []} ></NoteList>
     </main>
   );
 }

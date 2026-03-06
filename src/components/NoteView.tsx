@@ -1,5 +1,4 @@
-import { db } from '../db.ts';
-import type { Note } from '../db.ts';
+import { db, type Note } from '../db.ts';
 
 interface Props {
   note: Note;
